@@ -79,4 +79,30 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUserById = async (req, res) => {};
 
-exports.deleteUserById = async (req, res) => {};
+exports.deleteUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await db.user.delete({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        name: true,
+        role: true,
+      },
+    });
+    res.status(202);
+    res.send({
+      status: user?.id ? 'success' : 'failed',
+      message: user?.id
+        ? 'User deleted successfully'
+        : 'Failed to delete user.',
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
