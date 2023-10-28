@@ -1,6 +1,6 @@
 const db = require('../utils/prisma');
 
-exports.createUser = async (req, res) => {
+exports.createUser = async (req, res, next) => {
   try {
     const payload = req.body;
     const response = await db.user.create({
@@ -51,7 +51,7 @@ exports.getUser = async (_req, res, next) => {
   }
 };
 
-exports.getUserById = async (req, res) => {
+exports.getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await db.user.findUnique({
@@ -77,9 +77,9 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-exports.updateUserById = async (req, res) => {};
+exports.updateUserById = async (req, res, next) => {};
 
-exports.deleteUserById = async (req, res) => {
+exports.deleteUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await db.user.delete({
