@@ -10,7 +10,7 @@ exports.getUser = async (_req, res, next) => {
         username: true,
         email: true,
         name: true,
-        // avatar: true,
+        avatar: true,
         role: true,
       },
     });
