@@ -11,6 +11,7 @@ exports.getUser = async (_req, res, next) => {
         email: true,
         name: true,
         avatar: true,
+        role: true,
       },
     });
     res.status(200);
